@@ -20,9 +20,8 @@ data AuthError = InvalidCredentials | ConnectionError | OtherAuthError Text
 -- Function to authenticate a player
 authenticatePlayer :: S.SSH.Connection -> IO (Either AuthError PlayerCredentials)
 authenticatePlayer conn = do
-    -- Get username and password from player
-    username <- S.prompt conn "Username: "
-    password <- S.prompt conn "Password: "
+    -- Check public key
+    publicKey <- S.prompt conn "Enter your public key: "
     -- Check credentials
     if username == "test" && password == "test"
         then return $ Right $ PlayerCredentials username password
