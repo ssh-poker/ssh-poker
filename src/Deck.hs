@@ -19,6 +19,7 @@ dealCards n deck = splitAt n deck
 dealFromNewDeck :: Int -> IO ([Card], [Card])
 dealFromNewDeck n = do
     shuffledDeck <- shuffleDeck
+    groupBy n shuffledDeck
     return $ dealCards n shuffledDeck
 
 -- Test function to deal cards and show them
