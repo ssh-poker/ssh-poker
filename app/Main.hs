@@ -40,6 +40,9 @@ playerSession player gameStateRef gameChannel = do
         writeChan gameChannel (GL.PlayerJoined player)
     ))
     -- Game loop and logic
+    eitherGameResult <-
+        (readChan gameChannel) >>=
+        (\gameEvent -> GL.handleGameEvent gameEvent gameStateRef)
 
     catch (GL.gameLoop player gameStateRef gameChannel) (\e -> do
         putStrLn $ "Error in game session: " ++ show (e :: SomeException)
