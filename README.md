@@ -8,4 +8,3 @@ so you can play with your friends over the internet.
 ## License
 
 MIT
-# ssh-poker
